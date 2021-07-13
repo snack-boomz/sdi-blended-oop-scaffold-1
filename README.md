@@ -3,10 +3,10 @@
 ## Project Instructions
 
 * In this application you will create the following classes :
-  * BankAccount
-  * CheckingAccount
-  * SavingsAccount
-  * Member
+  * `BankAccount`
+  * `CheckingAccount`
+  * `SavingsAccount`
+  * `Member`
 * Implement the following instructions to ensure that each class is formatted properly
 
 #### `BankAccount`
@@ -19,12 +19,12 @@
 * There should be a static method of the `BankAccount` class that returns the private property `transactions` of the account passed in when called
 
 #### `CheckingAccount`
-* Should be a subclass of BankingAccount
+* Should be a subclass of `BankAccount`
 * If you attempt to overdraft your `CheckingAccount` you should receive a message telling you that you have insufficient funds to perform that action
 * If the balance of a `CheckingAccount` ever falls below $50 you should receive a $40 penalty fee
 
 #### `SavingsAccount`
-* Should be a subclass of BankingAccount
+* Should be a subclass of `BankAccount`
 * Should be able to link a `CheckingAccount` as a private property
 * Should allow you to transfer money from your `SavingsAccount` to your `CheckingAccount`
 * Should have a maximum number of debit transactions (10) associated with each `SavingsAccount`
