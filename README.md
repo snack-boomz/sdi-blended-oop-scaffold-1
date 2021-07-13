@@ -10,8 +10,8 @@
 * Implement the following instructions to ensure that each class is formatted properly
 
 ### BankAccount
-* `balance` should be a private property (Read more [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields)
-* `balance` should only be accessible via a getter named `getBalance` and a setter named `setbalance` (Read more about [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
+* `balance` should be a private property (Read more [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields))
+* `balance` should only be accessible via a getter named `getBalance` and a setter named `setbalance` (Read more about [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get))
 * The `credit()` method should add the given amount of money into the account
 * The `debit()` method should take out the given amount of money from the account
 * The `checkBalance()` method should return the current balance of the account in a readable string
