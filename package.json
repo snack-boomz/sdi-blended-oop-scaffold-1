@@ -1,0 +1,16 @@
+{
+  "name": "sdi-blended-oop-scaffold",
+  "version": "1.0.0",
+  "description": "Object Oriented Programming in JavaScript",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gSchool/sdi-blended-oop-scaffold.git"
+  },
+  "author": "gSchool",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gSchool/sdi-blended-oop-scaffold/issues"
+  },
+  "homepage": "https://github.com/gSchool/sdi-blended-oop-scaffold#readme"
+}
