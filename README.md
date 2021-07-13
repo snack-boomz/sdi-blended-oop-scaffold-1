@@ -49,5 +49,7 @@ You will create two functions that utilize polymorphism :
 * Should only add funds to instances of `SavingsAccounts` and no others
 
 ## Stretch goals
+* Implement some concept of time so that interest can be applied to `SavingsAccounts`
 * Implement a `CreditCard` class that develops interest. The balance of the `CreditCard` can be paid off using either `CheckingAccounts` or `SavingsAccounts`. In the cases of late payments a $25 penalty fee is applied to the balance of the `CreditCard`
-* Develop a test suite for your code to properly test all reasonable use cases
+* Create multiple banks that can open `BankAccounts` and its subclasses
+* Add in functionality that gives a user readable spending analysis on a monthly basis
