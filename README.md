@@ -3,10 +3,10 @@
 ## Project Instructions
 
 * In this application you will create the following classes :
-  1. BankAccount
-  1. CheckingAccount
-  1. SavingsAccount
-  1. Member
+  * BankAccount
+  * CheckingAccount
+  * SavingsAccount
+  * Member
 * Implement the following instructions to ensure that each class is formatted properly
 
 #### `BankAccount`
