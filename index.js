@@ -98,6 +98,7 @@ class SavingsAccount extends BankAccount {
       console.log(`New checking account balance is $${this.#checkingAccount.getBalance}.`);
     }
   };
+  
 
 let newSavingsAccount = new SavingsAccount('dude');  
 newSavingsAccount.setBalance = 1000;
