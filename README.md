@@ -32,7 +32,7 @@
 
 #### `Member`
 * Should have one public field containing the member's name
-* Any instantiation of a `BankAccount` or its subclasses should require a member to instantiate
+* Any instantiation of a `BankAccou#nt` or its subclasses should require a member to instantiate
 * A `Member`'s accounts should be private
 
 ## Polymorphism
