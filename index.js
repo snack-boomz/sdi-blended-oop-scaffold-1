@@ -1,17 +1,28 @@
 class Member {
-  //#accounts - A `Member`'s accounts should be private
+  #accounts = []; //`Member`'s accounts should be private
   constructor(name) {
     this.name = name; 
     //Should have one public field containing the member's name
-    //Any instantiation of a `BankAccount` or its subclasses should require a member to instantiate
   };
+  get getAccounts(){
+    return this.#accounts;
+  }
+  set addAccount(newAccount){
+    this.#accounts.push(newAccount);
+  }
+
+    //Any instantiation of a `BankAccount` or its subclasses should require a member to instantiate
+  
 };
 
-let Spencer = new Member('Spencer')
+
 class BankAccount /*superClass*/ {
   #balance = 0; //+ getBalance + setBalance - 
   #transactions = [];
-  constructor(member) { 
+  constructor(member) {
+    if (member instanceof Member === false) {
+       throw new Error('you messed up')
+    }
     this.member = member;
 
     //The `checkBalance()` method should return the current balance of the account in a readable string
@@ -25,11 +36,13 @@ class BankAccount /*superClass*/ {
     this.#balance = balance;
   }
   credit(newAmount) {  
-    this.#balance += newAmount;
+    // this.#balance += newAmount;
+    this.setBalance = newAmount + this.getBalance;
     this.#transactions.push (`$${newAmount} credited `); // `${this.#balance} + ${newAmount} = ${this.#balance += newAmount}`
   };
   debit(withdraw) {
-    this.#balance -= withdraw;
+    // this.#balance -= withdraw;
+    this.setBalance = this.getBalance - withdraw;
     this.#transactions.push (`$${withdraw} debited `);
   };
   checkBalance() {
@@ -42,13 +55,6 @@ class BankAccount /*superClass*/ {
 
 //Note: static ViewTransactions may not be accessing instanced account's #transactions.  It MAY be accessing the original BankAccount class's transactions.
 
-
-
-let myBankAccount = new BankAccount('spencer')
-myBankAccount.credit(100.34);
-myBankAccount.debit(34.00);
-// console.log(BankAccount.viewTransactions(myBankAccount));
-// console.log(myBankAccount.checkBalance());
 
 
 class CheckingAccount extends BankAccount {
@@ -70,15 +76,8 @@ class CheckingAccount extends BankAccount {
 
 }
 
-let newCheckingAccount = new CheckingAccount("myCheckingAccount");
-newCheckingAccount.setBalance = 1000;
 
 // console.log(newCheckingAccount.checkBalance());
-
-
-
-
-
 
 class SavingsAccount extends BankAccount {
   #checkingAccount;
@@ -92,29 +91,91 @@ class SavingsAccount extends BankAccount {
       this.#checkingAccount = account;
     }
     transferToChecking(amount) {
-      this.#checkingAccount.setBalance = amount + this.#checkingAccount.getBalance;
-      this.setBalance = this.getBalance - amount;
+      console.log(BankAccount.viewTransactions(this).length);
+      if ( BankAccount.viewTransactions(this).length > 10) {
+        this.setBalance = this.getBalance - 50;
+        console.log(`You have exceeded 10 transactions. Noob. You have been charged a transaction fee of $50, new savings balance is $${this.getBalance}`)
+      } 
+      this.#checkingAccount.credit(amount)
+      this.debit(amount)
       console.log(`New savings account balance is $${this.getBalance}.`);
       console.log(`New checking account balance is $${this.#checkingAccount.getBalance}.`);
+      
     }
   };
-  
+// let spencer = new Member('Spencer');
+// let spencerCheck1 = new CheckingAccount(spencer);
 
-let newSavingsAccount = new SavingsAccount('dude');  
-newSavingsAccount.setBalance = 1000;
-console.log(newSavingsAccount.getBalance);
-newSavingsAccount.linkChecking(newCheckingAccount);
-newSavingsAccount.transferToChecking(500);
+// let spencerSavings1 = new SavingsAccount(spencer);
+
+// let spencerCheck3 = new CheckingAccount(spencer);
+
+// let spencerSavings2 = new SavingsAccount(spencer);
+
+// let spencerCheck5 = new CheckingAccount(spencer);
+
+// spencer.addAccount = spencerCheck1;
+// spencer.addAccount = spencerSavings1;
+// spencer.addAccount = spencerCheck3;
+// spencer.addAccount = spencerSavings2;
+// spencer.addAccount = spencerCheck5;
+
+// console.log(spencer.getAccounts);
+
+// spencer {
+//   #accounts = [ checking, savings, checking]
+// }
 
 //polymorphism for below functions
-const distributeEvenly = () => {
+const distributeEvenly = (arrayOfAccounts, amountToDistribute) => {
+  let dividend = amountToDistribute / arrayOfAccounts.length;
 //* Should take an array of accounts and an amount to distribute as arguments
+  for (let i = 0; i < arrayOfAccounts.length; i++){
+    let eachAccount = arrayOfAccounts[i];
+    eachAccount.credit(dividend);
+    console.log(eachAccount.getBalance);
+  }
+}
+  // get length of array of accounts, divide amount by length of account array
+  // for loop through array of accounts
+  // add divided amount to balance of each account in array
+
+  // distributeEvenly(spencer.getAccounts, 107609870);
+  
+/*
+distributeEvenly(spencer.getAccounts, 400)
+
+
+checking = $100
+Savings = $100
+distributeEvenly(100)
+checking = $150
+savings = $150
+*/
+
 //* Should distribute the amount passed evenly amongst the balances of the accounts
-};
-const distributeToSavings = () => {
+
+const distributeToSavings = (arrayOfAccounts, amountToDistribute) => {
+  let arrayOfSavings = []
+  for (let i = 0; i < arrayOfAccounts.length; i++){
+   if ( arrayOfAccounts[i] instanceof SavingsAccount){
+   arrayOfSavings.push(arrayOfAccounts[i])
+  }
+}
+  let dividend = amountToDistribute / arrayOfSavings.length;
+  //* Should take an array of accounts and an amount to distribute as arguments
+    for (let i = 0; i < arrayOfSavings.length; i++){
+      let eachAccount = arrayOfSavings[i];
+      eachAccount.credit(dividend);
+      console.log(eachAccount.getBalance);
+    }
 //* Takes the same arguments as `distributeEvenly()`
 //* Should only add funds to instances of `SavingsAccounts` and no others
 };
+
+// distributeToSavings(spencer.getAccounts, 200);
+
+
 
 
 /*## Stretch goals (from README)
@@ -124,90 +185,3 @@ const distributeToSavings = () => {
 * Add in functionality that gives a user readable spending analysis on a monthly basis
 */
 
-// JS
-
-// Number
-// string
-// array
-// object
-// collection
-
-// C
-
-// int
-// char
-// *
-// short
-// short short
-// long
-// long long
-// long
-// bool
-// unsigned int
-// signed int
-//
-
-/*
-arr = [1, 2, 3, 4, 5, 6, 7]
-
-  for item in arr: 
-    print(item)
-
-
-class Simple_class():
-
-  def __init__(self):
-    self.attribute1 = 0
-    self.attribute2 = 2
-    self.attribute3 = 3
-
-  def start(self):
-    print("starting class!");
-  
-
-instance = Simple_class()
-instance.start()
-
-
-
-arr = [1, 2]
-
-reversedArr = arr.reverse()
-print(reversedArr)
-
-*/
-
-/*
-  
-  #include <stdio.h>
-  char * displayArrayInReverse(int array[], int arrayLength) {
-
-  static char buffer[50];
-  char * bufferPtr = buffer;
-
-  for (int i = (arrayLength - 1); i >= 0; i--) {
-    bufferPtr += sprintf(bufferPtr, "%d ", array[i]);
-  }
-  return buffer;
-}
-
-
-int main() {
-
-  int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-  int arrayLength = sizeof array / sizeof array[0];
-
-  char buffer[50];
-  char * bufferPtr = buffer;
-
-  for (int i = 0; i < arrayLength; i++) {
-    bufferPtr += sprintf(bufferPtr, "%d ", array[i]);
-  }
-
-  printf("The reverse order of the array looks like so: %s.\n The original order was %s.\n", displayArrayInReverse(array, arrayLength), buffer);
-
-}
-
-
-*/
